@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="anaKayit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="logoK_toplamTutar" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="anaKayitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="anaKayitResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="altKayit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="logoKargo_arasFatNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="logoKargo_mok" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="logoKargo_musteri" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="logoKargo_tutar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="logoKargo_ToplamTutar" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="logoKargo_teslimTarih" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="logoKargo_takipNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="logoKargo_anaKayit" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="logoKargo_odemeTarihi" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="logoKargo_tahsilatlitutar" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="altKayitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="altKayitResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="anaKayitGuncelle">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="logoK_toplamKayit" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="logoK_toplamTutar" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="anaKayitGuncelleResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="anaKayitSil">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="anaKayitSilResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="logoIdAra">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="anaKayitID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="logoIdAraResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="logoIdAraResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="logoXmlAktar">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="anaKayitID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="logoXmlAktarResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="logoXmlAktarResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="anaKayitSoapIn">
+    <wsdl:part name="parameters" element="tns:anaKayit" />
+  </wsdl:message>
+  <wsdl:message name="anaKayitSoapOut">
+    <wsdl:part name="parameters" element="tns:anaKayitResponse" />
+  </wsdl:message>
+  <wsdl:message name="altKayitSoapIn">
+    <wsdl:part name="parameters" element="tns:altKayit" />
+  </wsdl:message>
+  <wsdl:message name="altKayitSoapOut">
+    <wsdl:part name="parameters" element="tns:altKayitResponse" />
+  </wsdl:message>
+  <wsdl:message name="anaKayitGuncelleSoapIn">
+    <wsdl:part name="parameters" element="tns:anaKayitGuncelle" />
+  </wsdl:message>
+  <wsdl:message name="anaKayitGuncelleSoapOut">
+    <wsdl:part name="parameters" element="tns:anaKayitGuncelleResponse" />
+  </wsdl:message>
+  <wsdl:message name="anaKayitSilSoapIn">
+    <wsdl:part name="parameters" element="tns:anaKayitSil" />
+  </wsdl:message>
+  <wsdl:message name="anaKayitSilSoapOut">
+    <wsdl:part name="parameters" element="tns:anaKayitSilResponse" />
+  </wsdl:message>
+  <wsdl:message name="logoIdAraSoapIn">
+    <wsdl:part name="parameters" element="tns:logoIdAra" />
+  </wsdl:message>
+  <wsdl:message name="logoIdAraSoapOut">
+    <wsdl:part name="parameters" element="tns:logoIdAraResponse" />
+  </wsdl:message>
+  <wsdl:message name="logoXmlAktarSoapIn">
+    <wsdl:part name="parameters" element="tns:logoXmlAktar" />
+  </wsdl:message>
+  <wsdl:message name="logoXmlAktarSoapOut">
+    <wsdl:part name="parameters" element="tns:logoXmlAktarResponse" />
+  </wsdl:message>
+  <wsdl:portType name="logoKargoSoap">
+    <wsdl:operation name="anaKayit">
+      <wsdl:input message="tns:anaKayitSoapIn" />
+      <wsdl:output message="tns:anaKayitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="altKayit">
+      <wsdl:input message="tns:altKayitSoapIn" />
+      <wsdl:output message="tns:altKayitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="anaKayitGuncelle">
+      <wsdl:input message="tns:anaKayitGuncelleSoapIn" />
+      <wsdl:output message="tns:anaKayitGuncelleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="anaKayitSil">
+      <wsdl:input message="tns:anaKayitSilSoapIn" />
+      <wsdl:output message="tns:anaKayitSilSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="logoIdAra">
+      <wsdl:input message="tns:logoIdAraSoapIn" />
+      <wsdl:output message="tns:logoIdAraSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="logoXmlAktar">
+      <wsdl:input message="tns:logoXmlAktarSoapIn" />
+      <wsdl:output message="tns:logoXmlAktarSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="logoKargoSoap" type="tns:logoKargoSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="anaKayit">
+      <soap:operation soapAction="http://tempuri.org/anaKayit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altKayit">
+      <soap:operation soapAction="http://tempuri.org/altKayit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="anaKayitGuncelle">
+      <soap:operation soapAction="http://tempuri.org/anaKayitGuncelle" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="anaKayitSil">
+      <soap:operation soapAction="http://tempuri.org/anaKayitSil" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logoIdAra">
+      <soap:operation soapAction="http://tempuri.org/logoIdAra" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logoXmlAktar">
+      <soap:operation soapAction="http://tempuri.org/logoXmlAktar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="logoKargoSoap12" type="tns:logoKargoSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="anaKayit">
+      <soap12:operation soapAction="http://tempuri.org/anaKayit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="altKayit">
+      <soap12:operation soapAction="http://tempuri.org/altKayit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="anaKayitGuncelle">
+      <soap12:operation soapAction="http://tempuri.org/anaKayitGuncelle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="anaKayitSil">
+      <soap12:operation soapAction="http://tempuri.org/anaKayitSil" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logoIdAra">
+      <soap12:operation soapAction="http://tempuri.org/logoIdAra" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="logoXmlAktar">
+      <soap12:operation soapAction="http://tempuri.org/logoXmlAktar" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="logoKargo">
+    <wsdl:port name="logoKargoSoap" binding="tns:logoKargoSoap">
+      <soap:address location="https://service.cizgialbum.com/logoKargo.asmx" />
+    </wsdl:port>
+    <wsdl:port name="logoKargoSoap12" binding="tns:logoKargoSoap12">
+      <soap12:address location="https://service.cizgialbum.com/logoKargo.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
