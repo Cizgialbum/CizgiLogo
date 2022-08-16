@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using CizgiLogo.logoKargo;
+using System.Xml.Linq;
 
 namespace CizgiLogo
 {
@@ -19,7 +20,8 @@ namespace CizgiLogo
         public Form1()
         {
             InitializeComponent();
-            
+
+            //label4.Text = DateTime.MinValue.ToString();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -44,7 +46,7 @@ namespace CizgiLogo
                     string source = ofd.FileName;
                     string dest = @"C:\CizgiLogo\temp\" +
                     Path.GetFileName(source);
-                    File.Copy(source, dest);
+                    File.Copy(source, dest, true);
 
                     string tamYol = @"C:\CizgiLogo\temp\" + source;
                     
@@ -122,6 +124,8 @@ namespace CizgiLogo
 
                         string hataliKayitMok = "";
 
+                        string odemeTarihi = "";
+
                         if (ilkKayitID != 0)
                         {
 
@@ -135,11 +139,61 @@ namespace CizgiLogo
                                         veri = xmlReader.GetAttribute("FATNO") + ": " +
                                                xmlReader.GetAttribute("REFNO");
 
+
+                                    if (null == xmlReader.GetAttribute("textbox59"))
+                                    {
+                                        odemeTarihi = "";
+                                    }
+
+                                    else
+                                    {
+                                        odemeTarihi = xmlReader.GetAttribute("textbox59");
+
+                                    }
+
+                                    string textbox70S = "0";
+
+                                    if (null == xmlReader.GetAttribute("textbox70"))
+                                    {
+                                        textbox70S = "0";
+                                    }
+
+                                    else
+                                    {
+                                        textbox70S = xmlReader.GetAttribute("textbox70");
+
+                                    }
+
+                                    string odmTutari = "0";
+
+                                    if (null == xmlReader.GetAttribute("ODEME_TUTARI"))
+                                    {
+                                        odmTutari = "0";
+                                    }
+
+                                    else
+                                    {
+                                        odmTutari = xmlReader.GetAttribute("ODEME_TUTARI");
+
+                                    }
+
+                                    string moks = "";
+
+                                    if (null == xmlReader.GetAttribute("MÖK"))
+                                    {
+                                        moks = "";
+                                    }
+
+                                    else
+                                    {
+                                        moks = xmlReader.GetAttribute("MÖK");
+
+                                    }
+
                                     string altKayitSonuc = webservice.altKayit("41F2550CA5FE4E6F374CEA25362FO48B5CA7EDF5",
-                                        xmlReader.GetAttribute("SERI") + xmlReader.GetAttribute("FATNO"), xmlReader.GetAttribute("MÖK"),
-                                        xmlReader.GetAttribute("ALICI_ADI"), xmlReader.GetAttribute("textbox70"),
-                                        xmlReader.GetAttribute("ODEME_TUTARI"), xmlReader.GetAttribute("TESLIM_TARIHI"),
-                                        xmlReader.GetAttribute("textbox56"), ilkKayitID.ToString(), xmlReader.GetAttribute("textbox59"), xmlReader.GetAttribute("TAHSILATLI_KARGO_TUTARI"));
+                                        xmlReader.GetAttribute("SERI") + xmlReader.GetAttribute("FATNO"), moks,
+                                        xmlReader.GetAttribute("ALICI_ADI"), textbox70S, odmTutari, xmlReader.GetAttribute("TESLIM_TARIHI"),
+                                        xmlReader.GetAttribute("textbox56"), ilkKayitID.ToString(), odemeTarihi, xmlReader.GetAttribute("TAHSILATLI_KARGO_TUTARI"));
 
 
                            string renklendir = "red";
@@ -164,16 +218,33 @@ namespace CizgiLogo
                                hataliSayi.Refresh();
 
                                renklendir = "red";
+
+                                        label4.Text = altKayitSonuc;
                           }
 
 
-                                    listBoxGuncelle(xmlReader.GetAttribute("FATNO"), xmlReader.GetAttribute("MÖK"),
-                                        xmlReader.GetAttribute("ALICI_ADI"), xmlReader.GetAttribute("textbox70"),
-                                        xmlReader.GetAttribute("TESLIM_TARIHI"), xmlReader.GetAttribute("textbox56"), altKayitSonuc,
-                                        renklendir);
 
 
-                                    string aFiyat = xmlReader.GetAttribute("textbox70").Replace(".", ",");
+                                    string aFiyat = "0";
+
+                                    try
+                                    {
+                                        if (null == xmlReader.GetAttribute("textbox70"))
+                                        {
+                                            aFiyat = "0";
+                                        }
+                                        else
+                                        {
+                                            aFiyat = xmlReader.GetAttribute("textbox70").Replace(".", ",");
+                                        }
+                                        
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        hataKayit(ex.ToString());                                        
+                                    }
+
+                                    listBoxGuncelle(xmlReader.GetAttribute("FATNO"), xmlReader.GetAttribute("MÖK"), xmlReader.GetAttribute("ALICI_ADI"), aFiyat, xmlReader.GetAttribute("TESLIM_TARIHI"), xmlReader.GetAttribute("textbox56"), altKayitSonuc, renklendir);
 
                                     toplamTutar += Convert.ToDouble(aFiyat);
 
@@ -337,6 +408,65 @@ namespace CizgiLogo
         private void button2_Click(object sender, EventArgs e)
         {
             label4.Text = dateTimePicker1.Value.ToShortDateString();
+        }
+
+        public static string hataKayit(string exHata)
+        {
+
+            string filePath = @"C:\CizgiLogo\errXml";
+            string templatePath = @"C:\CizgiLogo\errXml\template";
+
+            string tarih = DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString();
+            string fileName = filePath + tarih + ".xml";
+
+            string hataNo = rndErrIdGenerator(7) + tarih;
+
+            //string hataKodlari = "test";
+
+            if (!File.Exists(fileName))
+            {
+                File.Copy(templatePath + "templ.xml", fileName);
+            }
+
+
+            XDocument xDoc = XDocument.Load(fileName);
+
+            XElement rootElement = xDoc.Root;
+
+            XElement newEle = new XElement("hata");
+
+            XElement hataNumara = new XElement("errID", hataNo);
+
+            XElement hataTarih = new XElement("errTarih", DateTime.Now.ToString());
+
+            XElement hataKod = new XElement("errKod", exHata);
+
+            newEle.Add(hataNumara, hataTarih, hataKod);
+            rootElement.Add(newEle);
+
+            xDoc.Save(fileName);
+
+
+            return hataNo;
+        }
+
+        public static string rndErrIdGenerator(int passUzunluk)
+        {
+            string allowedChars = "";
+
+            allowedChars += "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,";
+
+            char[] sep = { ',' };
+            string[] arr = allowedChars.Split(sep);
+            string passwordString = "";
+            string temp = "";
+            Random rand = new Random();
+            for (int i = 0; i < Convert.ToInt32(passUzunluk); i++)
+            {
+                temp = arr[rand.Next(0, arr.Length)];
+                passwordString += temp;
+            }
+            return passwordString;
         }
     }
 }

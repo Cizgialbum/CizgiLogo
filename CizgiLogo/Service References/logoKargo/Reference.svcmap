@@ -22,8 +22,8 @@
     <MetadataSource Address="https://service.cizgialbum.com/logoKargo.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="logoKargo1.wsdl" MetadataType="Wsdl" ID="ad46f91d-b593-4733-8a95-6ca1dd34d361" SourceId="1" SourceUrl="https://service.cizgialbum.com/logoKargo.asmx?wsdl" />
-    <MetadataFile FileName="logoKargo1.disco" MetadataType="Disco" ID="26c357ac-51e3-48ab-977d-01cd893b98ae" SourceId="1" SourceUrl="https://service.cizgialbum.com/logoKargo.asmx?disco" />
+    <MetadataFile FileName="logoKargo1.wsdl" MetadataType="Wsdl" ID="57305c4d-64f0-4124-8843-562db0fa5e6d" SourceId="1" SourceUrl="https://service.cizgialbum.com/logoKargo.asmx?wsdl" />
+    <MetadataFile FileName="logoKargo1.disco" MetadataType="Disco" ID="6d76557a-e45c-4b9b-bee1-8b53d28c817e" SourceId="1" SourceUrl="https://service.cizgialbum.com/logoKargo.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
